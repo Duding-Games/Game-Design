@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int prismiteCount = 0;
 
-    // Update is called once per frame
-    void Update()
+    public void AddPrismite(int amount)
     {
-        
+        prismiteCount += amount;
+        Debug.Log("Prismite añadido. Total: " + prismiteCount);
     }
 }
