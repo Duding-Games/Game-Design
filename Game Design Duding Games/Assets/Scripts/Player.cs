@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
 {
     public float interactRange = 2.0f; // Rango de interacción
     private InventoryManager inventoryManager;
+    private int item = 1;
 
     void Start()
     {
@@ -18,8 +20,14 @@ public class Player : MonoBehaviour
         // Detectar si el jugador presiona la tecla E
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("E presionada");
+            //Debug.Log("E presionada");
             Interact();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("Q presionada");
+            CreateObject();
         }
     }
 
@@ -31,8 +39,7 @@ public class Player : MonoBehaviour
         {
             if (hitCollider.CompareTag("Prismite"))
             {
-                Debug.Log("Prismite obtenido");
-                inventoryManager.AddPrismite(1);
+                inventoryManager.AddPrismite(1 * item);
 
                 // Destruye el material cada x recolecciones
                 //Destroy(hitCollider.gameObject);
@@ -43,6 +50,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    void CreateObject()
+    {
+        if (inventoryManager.prismiteCount >= 10)
+        {
+            inventoryManager.prismiteCount -= 10;
+            Debug.Log("Prismite consumido. Total restante: " + inventoryManager.prismiteCount);
+
+            item += 2;
+        }
+        else Debug.Log("No tienes suficiente Prismite para crear el objeto.");
+    }
 
     void OnDrawGizmos()
     {
