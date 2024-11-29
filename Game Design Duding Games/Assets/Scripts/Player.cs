@@ -41,12 +41,15 @@ public class Player : MonoBehaviour
             {
                 inventoryManager.AddPrismite(1 * item);
 
-                // Destruye el material cada x recolecciones
-                //Destroy(hitCollider.gameObject);
+                // Llamar al método Interact del objeto Prismite
+                Prismite prismite = hitCollider.GetComponent<Prismite>();
+                if (prismite != null)
+                {
+                    prismite.Interact();
+                }
+
                 break;
             }
-
-            // Hacer lo mismo para otros materiales
         }
     }
 
