@@ -73,6 +73,8 @@ public class Player : MonoBehaviour
         {
             // Resta Prismite del inventario
             inventoryManager.prismiteCount -= 10;
+
+            inventoryManager.UpdateText();
             Debug.Log("Prismite consumido. Total restante: " + inventoryManager.prismiteCount);
             Debug.Log("Recolector creado");
 
